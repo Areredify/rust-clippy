@@ -254,16 +254,6 @@ impl<'a, 'tcx> LateLintPass<'a, 'tcx> for Functions {
             if let Some(attr) = attr {
                 let fn_header_span = item.span.with_hi(sig.decl.output.span().hi());
                 check_needless_must_use(cx, &sig.decl, item.hir_id, item.span, fn_header_span, attr);
-            } else if cx.access_levels.is_exported(item.hir_id) && !is_proc_macro(&item.attrs) {
-                check_must_use_candidate(
-                    cx,
-                    &sig.decl,
-                    cx.tcx.hir().body(*body_id),
-                    item.span,
-                    item.hir_id,
-                    item.span.with_hi(sig.decl.output.span().hi()),
-                    "this method could have a `#[must_use]` attribute",
-                );
             }
         }
     }

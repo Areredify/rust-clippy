@@ -14,7 +14,7 @@ pub struct MyPure;
 }
 
 impl MyPure {
-    #[must_use] pub fn inherent_pure(&self) -> u8 {
+    pub fn inherent_pure(&self) -> u8 {
         0
     }
 }
@@ -28,7 +28,7 @@ pub trait MyPureTrait {
 }
 
 impl MyPureTrait for MyPure {
-    #[must_use] fn trait_impl_pure(&self, i: u32) -> u32 {
+    fn trait_impl_pure(&self, i: u32) -> u32 {
         i
     }
 }
